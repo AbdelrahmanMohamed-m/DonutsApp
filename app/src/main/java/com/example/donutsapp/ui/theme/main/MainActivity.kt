@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.donutsapp.ui.theme.DonutsAppTheme
+import com.example.donutsapp.ui.theme.screen.homeScreen.composable.bottombarItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

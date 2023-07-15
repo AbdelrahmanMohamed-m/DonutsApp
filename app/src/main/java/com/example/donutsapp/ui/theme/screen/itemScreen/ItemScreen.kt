@@ -1,16 +1,20 @@
 package com.example.donutsapp.ui.theme.screen.itemScreen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -26,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -33,6 +38,7 @@ import com.example.donutsapp.R
 import com.example.donutsapp.ui.theme.primary
 import com.example.donutsapp.ui.theme.tertiary
 import com.example.donutsapp.ui.theme.text
+
 
 @Composable
 fun ItemScreen(
@@ -42,25 +48,22 @@ fun ItemScreen(
     ) {
     card(
         onClick = {
-            NavController.navigate("HomeScreen")
+           NavController.navigate("HomeScreen")
         }
     )
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Transparent),
-    ) {
-        Box(
-            modifier = Modifier
-                .weight(0.3f)
-                .background(Color.Transparent)
+            .background(Color.Transparent)
+        ) {
+        Spacer(
+            modifier = Modifier.weight(1f)
         )
         Card(
             modifier = Modifier
                 .background(Color.Transparent)
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp))
-                .weight(0.4f),
+                .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp)),
             colors = CardDefaults.cardColors(
                 containerColor = Color.White
             ),
@@ -78,7 +81,7 @@ fun ItemScreen(
                 Card(
                     modifier = Modifier
                         .clip(RoundedCornerShape(12.dp))
-                        .clickable {incrment.value-- },
+                        .clickable { incrment.value-- },
                     colors = CardDefaults.cardColors(
                         containerColor = Color.White
                     ),
@@ -135,18 +138,22 @@ fun ItemScreen(
                 }
 
             }
-            Row(
-                Modifier.padding(top = 16.dp, start = 32.dp, end = 32.dp),
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp, start = 32.dp)
             ) {
                 Text(
-                    text = (incrment.value*16).toString()+"\$",
+                    text = (incrment.value * 16).toString() + "\$",
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
                 )
                 Button(
                     onClick = { /*TODO*/ },
-                    modifier = Modifier.padding(start = 32.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp, start = 64.dp, end = 32.dp),
                     shape = RoundedCornerShape(32.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = primary
@@ -233,7 +240,7 @@ fun card(onClick: () -> Unit) {
             Image(
                 painter = painterResource(id = R.drawable.donutup1),
                 contentDescription = "image holder",
-                modifier= Modifier.padding(start = 72.dp),
+                modifier = Modifier.padding(start = 72.dp),
 
                 )
 

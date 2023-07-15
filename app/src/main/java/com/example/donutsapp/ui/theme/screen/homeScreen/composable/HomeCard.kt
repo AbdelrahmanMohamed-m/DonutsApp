@@ -24,8 +24,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -56,20 +59,16 @@ fun HomeContentCard(
         modifier = Modifier
             .width(193.dp)
             .height(325.dp)
-            .clickable { onClick() },
-
+            .clickable { onClick() }
+            .background(color, shape = RoundedCornerShape(16.dp)),
         contentAlignment = Alignment.Center
     ) {
-        Card(
-            modifier = Modifier
-                .fillMaxSize()
-                .clip(shape = RoundedCornerShape(16.dp)),
-            colors = CardDefaults.cardColors(color)
-
+        Box(
+            modifier = Modifier.align(Alignment.TopStart)
         ) {
             FavouriteIcon()
-            CardText()
         }
+        CardText()
         Card(
             modifier = Modifier
                 .padding(bottom = 90.dp)
@@ -91,39 +90,54 @@ fun HomeContentCard(
 @Composable
 private fun CardText() {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 140.dp,start = 16.dp, end = 16.dp)
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Strawberry Wheel",
             color = Color.Black,
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Start,
         )
-        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "These Baked Strawberry Donuts are filled with\nfresh  strawberries...",
             color = text,
             fontSize = 12.sp,
             fontWeight = FontWeight.Normal,
-            textAlign = TextAlign.Start
-        )
-        Spacer(modifier = Modifier.height(8.dp))
+            textAlign = TextAlign.Center,
+            style = TextStyle(baselineShift = BaselineShift(0.1f)
+                ),
+            modifier = Modifier.padding(horizontal = 16.dp))
+
+
         Row(
-            horizontalArrangement = Arrangement.End
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+                .offset(x = 40.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
+            Text(
+                text = "\$20",
+                color = Color(0xFF565B62),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 8.dp),
+                style = TextStyle(textDecoration = TextDecoration.LineThrough)
+
+            )
             Text(
                 text = "$16",
                 color = Color.Black,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(
-                    start = 126.dp
-                )
             )
         }
+
     }
+
+
 }
 
 @Composable
@@ -134,6 +148,7 @@ private fun FavouriteIcon() {
             .background(
                 Color.White, RoundedCornerShape(16.dp)
             )
+            .padding(4.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.hearticonalone),
@@ -142,4 +157,3 @@ private fun FavouriteIcon() {
         )
     }
 }
-

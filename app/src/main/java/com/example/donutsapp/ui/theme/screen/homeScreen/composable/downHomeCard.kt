@@ -85,7 +85,8 @@ fun HomeDownCardContent(
                     text = name,
                     style = androidx.compose.ui.text.TextStyle(
                         color = Color.Black,
-                        fontSize = 16.sp
+                        fontSize = 16.sp,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
                     ),
                     modifier = Modifier.padding(top = 20.dp)
 
